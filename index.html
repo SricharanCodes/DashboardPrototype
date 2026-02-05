@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Prototype</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <div class="h1">AGV Dashboard</div>
+        <div class="sub">Sample prototype</div>
+      </div>
+
+      <div class="right">
+        <label class="pill">
+          Speed
+          <input id="speedRange" type="range" min="0.25" max="3" step="0.25" value="1" />
+          <span id="speedValue">1.00x</span>
+        </label>
+        <button id="pauseBtn" class="btn">Pause</button>
+        <button id="injectIncidentBtn" class="btn danger">Incident</button>
+      </div>
+    </header>
+
+    <section class="kpis">
+      <div class="kpi">
+        <div class="label">Active</div>
+        <div class="value" id="kpiActive">—</div>
+        <div class="hint" id="kpiActiveHint">—</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Throughput/hr</div>
+        <div class="value" id="kpiThroughput">—</div>
+        <div class="hint" id="kpiThroughputHint">—</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Avg Battery</div>
+        <div class="value" id="kpiBattery">—</div>
+        <div class="hint" id="kpiBatteryHint">—</div>
+      </div>
+    </section>
+
+    <main class="grid">
+      <section class="card">
+        <div class="cardHead">
+          <div>
+            <div class="cardTitle">Warehouse Map (D3)</div>
+            <div class="cardSub">AGVs move + state colors</div>
+          </div>
+          <div class="chip" id="telemetryStatus">LIVE</div>
+        </div>
+        <div id="warehouseViz" class="viz"></div>
+      </section>
+
+      <section class="card">
+        <div class="cardHead">
+          <div>
+            <div class="cardTitle">Telemetry (Chart.js)</div>
+            <div class="cardSub">Zoom/pan + incident annotations</div>
+          </div>
+        </div>
+        <canvas id="telemetryChart"></canvas>
+      </section>
+
+      <section class="card">
+        <div class="cardHead">
+          <div>
+            <div class="cardTitle">Battery Distribution</div>
+            <div class="cardSub">Datalabels</div>
+          </div>
+        </div>
+        <canvas id="batteryChart"></canvas>
+      </section>
+
+      <section class="card feedCard">
+        <div class="cardHead">
+          <div>
+            <div class="cardTitle">Ops Feed</div>
+            <div class="cardSub">Auto events</div>
+          </div>
+          <button id="clearFeedBtn" class="btn ghost">Clear</button>
+        </div>
+        <div id="feed" class="feed"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Zoom telemetry with scroll / drag. Double click to reset.
+    </footer>
+  </div>
+
+  <!-- Chart.js + plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- App -->
+  <script src="./js/sim.js"></script>
+  <script src="./js/charts-min.js"></script>
+  <script src="./js/d3map-min.js"></script>
+  <script src="./js/main-min.js"></script>
+</body>
+</html>
